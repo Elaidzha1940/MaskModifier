@@ -16,9 +16,7 @@ struct ContentView: View {
         
         VStack {
             starsView
-                .overlay {
-                    overlayView
-                }
+                .overlay(overlayView.mask(starsView))
         }
     }
     
@@ -31,6 +29,7 @@ struct ContentView: View {
                 
             }
         }
+        .allowsHitTesting(false)
     }
     
     private var starsView: some View {
@@ -40,7 +39,10 @@ struct ContentView: View {
                     .font(.system(size: 35))
                     .foregroundColor(rating >= index ? Color.orange : Color.gray)
                     .onTapGesture {
-                        rating = index
+                        withAnimation(.easeOut) {
+                            rating = index
+                            
+                        }
                     }
             }
         }
