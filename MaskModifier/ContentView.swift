@@ -10,7 +10,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var rating: Int = 4
+    @State var rating: Int = 3
     
     var body: some View {
         
@@ -24,7 +24,8 @@ struct ContentView: View {
         GeometryReader { geometry in
             ZStack(alignment: .leading) {
                 Rectangle()
-                    .foregroundColor(.yellow)
+                //.foregroundColor(.yellow)
+                    .fill(LinearGradient(colors: [Color.orange, Color.yellow], startPoint: .leading, endPoint: .trailing))
                     .frame(width: CGFloat(rating) / 5 * geometry.size.width)
                 
             }
@@ -36,7 +37,7 @@ struct ContentView: View {
         HStack {
             ForEach(1..<6) { index in
                 Image(systemName: "staroflife.fill")
-                    .font(.system(size: 35))
+                    .font(.system(size: 40))
                     .foregroundColor(rating >= index ? Color.orange : Color.gray)
                     .onTapGesture {
                         withAnimation(.easeOut) {
