@@ -10,16 +10,19 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var rating: Int = 3
+    @State var rating: Int = 4
     
     var body: some View {
         
         VStack {
-            ZStack {
+            HStack {
                 ForEach(1..<6) { index in
                     Image(systemName: "staroflife.fill")
                         .font(.system(size: 35))
-                        .foregroundColor(rating == index ? Color.red : Color.gray)
+                        .foregroundColor(rating >= index ? Color.orange : Color.gray)
+                        .onTapGesture {
+                            rating = index
+                        }
                 }
             }
         }
